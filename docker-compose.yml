@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    container_name: pousada
+    restart: always
+    ports:
+      - 6020:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: senac
+      WORDPRESS_DB_PASSWORD: senac@123
+      WORDPRESS_DB_NAME: wppousada
+    volumes:
+      - ~/wp-pousada:/var/www/html
+
+  db:
+    image: mysql
+    container_name: dbpousada
+    restart: always
+    environment:
+      MYSQL_DATABASE: wppousada
+      MYSQL_USER: senac
+      MYSQL_PASSWORD: senac@123
+      MYSQL_ROOT_PASSWORD: senac@123
+    volumes:
+      - ~/data-pousada:/var/lib/mysql
